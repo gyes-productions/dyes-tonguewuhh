@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ProjectSettings>
-  <Name value="Dyes Tonguewuhh"/>
+  <Name value="dyes-tonguewuhh"/>
   <Version value="1.0.0"/>
   <Description value=""/>
   <BundleIdentifier value="com.myCompany.product"/>
@@ -20,12 +20,12 @@
   <AppGroupID value=""/>
   <RedirectSampleFolder value=""/>
   <AAXCategoryFX value="AAX_ePlugInCategory_Modulation"/>
-  <VST3Category value=""/>
+  <VST3Category value="Instrument"/>
   <SupportMonoFX value="No"/>
   <EnableMidiInputFX value="No"/>
   <EnableMidiOut value="No"/>
   <EnableSoundGeneratorsFX value="No"/>
-  <VST3Support value="No"/>
+  <VST3Support value="1"/>
   <UseRawFrontend value="No"/>
   <ExpansionType value="Disabled"/>
   <EncryptionKey value=""/>

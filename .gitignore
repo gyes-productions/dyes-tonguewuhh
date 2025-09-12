@@ -1,5 +1,5 @@
 # Exclude HISE Binaries
-Binaries\**
+Binaries
 
 # Prerequisites
 *.d
