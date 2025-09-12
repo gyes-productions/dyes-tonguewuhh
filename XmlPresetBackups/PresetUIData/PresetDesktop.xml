@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptPanel" id="containerPanel" x="0.0" y="0.0" width="600"
+             height="600" bgColour="0" itemColour="0" itemColour2="0" textColour="0">
+    <Component type="ScriptPanel" id="adsrPanel" x="320.0" y="10.0" parentComponent="containerPanel"
+               width="270" height="140">
+      <Component type="ScriptFloatingTile" id="adsr_tile" x="60" y="1" ContentType="AHDSRGraph"
+                 bgColour="0" itemColour="452984831" itemColour2="2164260863"
+                 textColour="0" Data="{&#10;  &quot;ProcessorId&quot;: &quot;AHDSR Envelope1&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
+                 width="200" height="60" parentComponent="adsrPanel"/>
+      <Component type="ScriptSlider" id="attackKnob" x="0" y="71" parentComponent="adsrPanel"
+                 text="Attack" defaultValue="1.0" stepSize="0.1" mode="Time" processorId="AHDSR Envelope1"
+                 parameterId="Attack" max="40.0"/>
+    </Component>
+    <Component type="ScriptFloatingTile" id="fltKeyboard" x="0.0" y="400.0"
+               parentComponent="containerPanel" width="600" height="75.0" ContentType="Keyboard"
+               bgColour="4284769380" itemColour="452984831" itemColour2="4294967295"
+               textColour="0" Data="{&#10;  &quot;KeyWidth&quot;: 14.0,&#10;  &quot;DisplayOctaveNumber&quot;: true,&#10;  &quot;LowKey&quot;: 21,&#10;  &quot;HiKey&quot;: 127,&#10;  &quot;CustomGraphics&quot;: false,&#10;  &quot;DefaultAppearance&quot;: true,&#10;  &quot;BlackKeyRatio&quot;: 0.699999988079071,&#10;  &quot;ToggleMode&quot;: false,&#10;  &quot;MidiChannel&quot;: 1,&#10;  &quot;UseVectorGraphics&quot;: true,&#10;  &quot;UseFlatStyle&quot;: false,&#10;  &quot;MPEKeyboard&quot;: false,&#10;  &quot;MPEStartChannel&quot;: 2,&#10;  &quot;MPEEndChannel&quot;: 16&#10;}"/>
+  </Component>
+</ContentProperties>
