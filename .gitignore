@@ -1,5 +1,6 @@
 # Exclude HISE Binaries
 Binaries
+Presets/Autosave_*.hip
 
 # Prerequisites
 *.d
