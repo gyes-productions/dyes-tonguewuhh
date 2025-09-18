@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ProjectSettings>
-  <Name value="dyes-tonguewuhh"/>
+  <Name value="Dyes Tonguewuhh"/>
   <Version value="1.0.0"/>
-  <Description value=""/>
-  <BundleIdentifier value="com.myCompany.product"/>
+  <Description value="Steel Tongue Rhodes Keyboard"/>
+  <BundleIdentifier value="com.GyesProductions.product"/>
   <PluginCode value="Abcd"/>
   <EmbedAudioFiles value="Yes"/>
   <EmbedImageFiles value="Yes"/>
@@ -18,7 +18,7 @@
   <ExtraDefinitionsLinux value=""/>
   <ExtraDefinitionsNetworkDll value=""/>
   <AppGroupID value=""/>
-  <AAXCategoryFX value="AAX_ePlugInCategory_Modulation"/>
+  <AAXCategoryFX value="AAX_ePlugInCategory_Instrument"/>
   <VST3Category value="Instrument"/>
   <SupportMonoFX value="No"/>
   <EnableMidiInputFX value="No"/>
@@ -41,4 +41,5 @@
   <CompileWithPerfetto value="No"/>
   <CompileWithDebugSymbols value="No"/>
   <IncludeLorisInFrontend value="No"/>
+  <RedirectSampleFolder value=""/>
 </ProjectSettings>

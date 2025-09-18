@@ -9,7 +9,14 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="attackKnob" value="13.89999961853027"/>
+            <Control type="ScriptSlider" id="knbAttack" value="3.039999961853027"/>
+            <Control type="ScriptSlider" id="knbHold" value="224.0"/>
+            <Control type="ScriptSlider" id="knbDecay" value="1544.0"/>
+            <Control type="ScriptSlider" id="knbSustain" value="-1.799999594688416"/>
+            <Control type="ScriptSlider" id="knbRelease" value="1339.599975585938"/>
+            <Control type="ScriptSlider" id="knbSaturationGain" value="0.0"/>
+            <Control type="ScriptSlider" id="knbVolume" value="-3.199998617172241"/>
+            <Control type="ScriptSlider" id="knbReverb" value="0.0"/>
           </Content>
           <UIData Source="PresetUIData"/>
         </Processor>
@@ -56,16 +63,60 @@
           <ChildProcessors/>
         </Processor>
         <Processor Type="EffectChain" ID="FX" Bypassed="0">
-          <ChildProcessors/>
+          <ChildProcessors>
+            <Processor Type="SimpleGain" ID="Simple Gain1" Bypassed="0" Gain="-3.199999094009399"
+                       Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="Delay Modulation" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="Width Modulation" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+                <Processor Type="ModulatorChain" ID="Pan Modulation" Bypassed="0" Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+            </Processor>
+            <Processor Type="Saturator" ID="Saturator1" Bypassed="0" Saturation="0.0"
+                       WetAmount="0.0" PreGain="0.0" PostGain="0.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Saturation Modulation" Bypassed="0"
+                           Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+            </Processor>
+            <Processor Type="Dynamics" ID="Dynamics1" Bypassed="0" GateEnabled="0.0"
+                       GateThreshold="0.0" GateAttack="1.0" GateRelease="100.0" CompressorEnabled="0.0"
+                       CompressorThreshold="0.0" CompressorRatio="1.0" CompressorAttack="10.0"
+                       CompressorRelease="100.0" LimiterEnabled="1.0" LimiterThreshold="0.0"
+                       LimiterAttack="1.0" LimiterRelease="10.0" CompressorMakeup="0.0"
+                       LimiterMakeup="0.0">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+            </Processor>
+            <Processor Type="SimpleReverb" ID="reverb1" Bypassed="0" RoomSize="0.2000000029802322"
+                       Damping="0.699999988079071" WetLevel="0.0" DryLevel="1.0" Width="0.800000011920929"
+                       FreezeMode="0.1000000014901161">
+              <ChildProcessors/>
+              <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+            </Processor>
+          </ChildProcessors>
         </Processor>
-        <Processor Type="StreamingSampler" ID="Sampler1" Bypassed="0" Gain="1.0"
+        <Processor Type="StreamingSampler" ID="Sampler" Bypassed="0" Gain="1.0"
                    Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
                    PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
                    SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                    OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                    NumChannels="1" UseStaticMatrix="0.0" Group0Table="" Group1Table=""
                    Group2Table="" Group3Table="" Group4Table="" Group5Table="" Group6Table=""
-                   Group7Table="" SampleMapID="SimpleMap">
+                   Group7Table="">
           <ChildProcessors>
             <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
               <ChildProcessors/>
@@ -74,8 +125,8 @@
               <ChildProcessors>
                 <Processor Type="AHDSR" ID="AHDSR Envelope1" Bypassed="0" Monophonic="0.0"
                            Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                           Attack="13.89999961853027" AttackLevel="0.0" Hold="10.0" Decay="300.0"
-                           Sustain="0.0" Release="20.0" EcoMode="1.0">
+                           Attack="3.039999961853027" AttackLevel="0.0" Hold="224.0" Decay="1544.0"
+                           Sustain="-1.799999475479126" Release="1339.599975585938" EcoMode="1.0">
                   <ChildProcessors>
                     <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                       <ChildProcessors/>
@@ -117,6 +168,13 @@
           <channels>
             <channelData enabled="1" level="0.0" suffix=""/>
           </channels>
+          <samplemap CrossfadeGamma="1.0" ID="SimpleMap" RRGroupAmount="1.0" MicPositions=";"
+                     SaveMode="2">
+            <sample Root="65" LoKey="21" HiKey="96" LoVel="0" HiVel="127" RRGroup="1"
+                    FileName="C:\Audio Developer\HISE Projects\dyes-tonguewuhh\Samples\Tonguewuhh.wav"
+                    Duplicate="0" SampleEnd="322083" MonolithOffset="0" MonolithLength="323584"
+                    SampleRate="44100.0" Volume="-3"/>
+          </samplemap>
         </Processor>
       </ChildProcessors>
       <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>

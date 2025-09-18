@@ -2,21 +2,52 @@
 
 <ContentProperties DeviceType="Desktop">
   <Component type="ScriptPanel" id="containerPanel" x="0.0" y="0.0" width="600.0"
-             height="600.0" bgColour="0" itemColour="0" itemColour2="0" textColour="0">
-    <Component type="ScriptPanel" id="adsrPanel" x="320.0" y="10.0" parentComponent="containerPanel"
-               width="270.0" height="140.0">
-      <Component type="ScriptFloatingTile" id="adsr_tile" x="60.0" y="1.0" ContentType="AHDSRGraph"
+             height="580.0" bgColour="0" itemColour="0" itemColour2="0" textColour="0">
+    <Component type="ScriptImage" id="Image1" x="-82.0" y="-90.0" parentComponent="containerPanel"
+               width="760.0" height="750.0" fileName="{PROJECT_FOLDER}ChatGPT Image Sep 17, 2025, 02_12_29 PM.png"/>
+    <Component type="ScriptPanel" id="adsrPanel" x="10.0" y="150.0" parentComponent="containerPanel"
+               width="250.0" height="120.0">
+      <Component type="ScriptLabel" id="Label1" x="60.0" y="50.0" parentComponent="adsrPanel"
+                 text="AHDSR"/>
+      <Component type="ScriptFloatingTile" id="adsr_tile" x="10.0" y="9.0" ContentType="AHDSRGraph"
                  bgColour="0" itemColour="452984831" itemColour2="2164260863"
                  textColour="0" Data="{&#10;  &quot;ProcessorId&quot;: &quot;AHDSR Envelope1&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
-                 width="200.0" height="60.0" parentComponent="adsrPanel"/>
-      <Component type="ScriptSlider" id="attackKnob" x="0.0" y="71.0" parentComponent="adsrPanel"
-                 text="Attack" defaultValue="1.0" stepSize="0.1000000014901161"
-                 mode="Time" processorId="AHDSR Envelope1" parameterId="Attack"
-                 max="40.0"/>
+                 width="240.0" height="60.0" parentComponent="adsrPanel"/>
+      <Component type="ScriptSlider" id="knbAttack" x="10.0" y="70.0" parentComponent="adsrPanel"
+                 text="Attack" bgColour="0" itemColour="0" width="40.0" height="40.0"
+                 isMetaParameter="1" processorId="AHDSR Envelope1" parameterId="Attack"
+                 max="40.0" defaultValue="3.0"/>
+      <Component type="ScriptSlider" id="knbHold" x="60.0" y="70.0" parentComponent="adsrPanel"
+                 text="Hold" bgColour="0" itemColour="0" width="40.0" height="40.0"
+                 processorId="AHDSR Envelope1" parameterId="Hold" defaultValue="170.0"
+                 max="2000.0" stepSize="1.0"/>
+      <Component type="ScriptSlider" id="knbDecay" x="110.0" y="70.0" parentComponent="adsrPanel"
+                 text="Decay" bgColour="0" itemColour="0" width="40.0" height="40.0"
+                 processorId="AHDSR Envelope1" parameterId="Decay" defaultValue="700.0"
+                 max="2000.0" stepSize="1.0"/>
+      <Component type="ScriptSlider" id="knbSustain" x="160.0" y="69.0" parentComponent="adsrPanel"
+                 text="Sustain" bgColour="0" itemColour="0" width="40.0" height="40.0"
+                 processorId="AHDSR Envelope1" parameterId="Sustain" mode="Decibel"
+                 min="-30.0" max="0.0" stepSize="0.1000000014901161" suffix=" dB"
+                 middlePosition="-18.0" defaultValue="-4.0"/>
+      <Component type="ScriptSlider" id="knbRelease" x="210.0" y="70.0" parentComponent="adsrPanel"
+                 text="Release" bgColour="0" itemColour="0" width="40.0" height="40.0"
+                 processorId="AHDSR Envelope1" parameterId="Release" defaultValue="1500.0"
+                 max="5000.0" stepSize="0.1000000014901161" min="3.0"/>
     </Component>
-    <Component type="ScriptFloatingTile" id="fltKeyboard" x="0.0" y="400.0"
+    <Component type="ScriptFloatingTile" id="fltKeyboard" x="0.0" y="490.0"
                parentComponent="containerPanel" width="600.0" height="75.0"
                ContentType="Keyboard" bgColour="4284769380" itemColour="452984831"
                itemColour2="4294967295" textColour="0" Data="{&#10;  &quot;KeyWidth&quot;: 14.0,&#10;  &quot;DisplayOctaveNumber&quot;: true,&#10;  &quot;LowKey&quot;: 21,&#10;  &quot;HiKey&quot;: 127,&#10;  &quot;CustomGraphics&quot;: false,&#10;  &quot;DefaultAppearance&quot;: true,&#10;  &quot;BlackKeyRatio&quot;: 0.699999988079071,&#10;  &quot;ToggleMode&quot;: false,&#10;  &quot;MidiChannel&quot;: 1,&#10;  &quot;UseVectorGraphics&quot;: true,&#10;  &quot;UseFlatStyle&quot;: false,&#10;  &quot;MPEKeyboard&quot;: false,&#10;  &quot;MPEStartChannel&quot;: 2,&#10;  &quot;MPEEndChannel&quot;: 16&#10;}"/>
+    <Component type="ScriptSlider" id="knbSaturationGain" x="10.0" y="70.0"
+               parentComponent="containerPanel" text="AmpGain" max="10.0" stepSize="0.1000000014901161"
+               width="130.0" height="50.0"/>
+    <Component type="ScriptSlider" id="knbVolume" x="10.0" y="10.0" parentComponent="containerPanel"
+               text="Volume" mode="Decibel" min="-100.0" max="0.0" stepSize="0.1000000014901161"
+               suffix=" dB" middlePosition="-18.0" processorId="Simple Gain1"
+               parameterId="Gain" width="130.0" height="50.0" defaultValue="-3.0"/>
+    <Component type="ScriptSlider" id="knbReverb" x="460.0" y="70.0" parentComponent="containerPanel"
+               text="Reverb" max="10.0" stepSize="0.1000000014901161" middlePosition="5.0"
+               width="130.0" height="50.0"/>
   </Component>
 </ContentProperties>
