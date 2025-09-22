@@ -14,3 +14,8 @@ jobs:
     steps:
       - name: Say Hello
         run: echo "Hello, World!"
+
+# TODO - Update this workflow to include Windows build using the local scripts.  
+# Relocate scripts into a scripts folder.
+# Update workflow to build on Mac OSX runner, doublecheck versions
+# HISE building takes a long time - consider caching the HISE build or using a prebuilt version

@@ -1,3 +1,5 @@
+#TODO: Get changes from Mac build testing
+
 # STAGE 1: Configuration ==========================================================================
 # Change these values for your project
 
@@ -8,6 +10,7 @@ project_name="Dyes Tonguewuhh"
 xml_name="Preset.xml"
 
 # This is the folder of the HISE source code
+# TODO: Update hise path to the one containing HISE source code that was built with Projucer
 hisepath="/Users/christophhart/HISE"
 
 # Set the plugin formats you want to compile
@@ -21,7 +24,7 @@ plugin_type=instrument
 # create path variables
 project_folder="$PWD"
 hise_binary="$hisepath/projects/standalone/Builds/MacOSX/build/Release/HISE.app/Contents/MacOS/HISE"
-mp_binary="$hisepath/tools/multipagecreator/Builds/MacOSX/build/Release/multipagecreator.app/Contents/MacOS/multipagecreator"
+mp_binary="$hisepath/tools/multipagecreator/Builds/MacOSX/build/Release/multipagecreator.app/Contents/MacOS/multipagecreator"	# TODO: Install and setup Multipage Creator
 au_project=$project_folder/Binaries/Builds/MacOSX/build/Release/$project_name.component
 vst3_project=$project_folder/Binaries/Builds/MacOSX/build/Release/$project_name.vst3
 installer_binary="$project_folder/Installer/$project_name Installer.app"
