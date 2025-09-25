@@ -2,6 +2,8 @@
 Binaries
 Presets/Autosave_*.hip
 
+Images/.unused
+
 # Prerequisites
 *.d
 
