@@ -10,30 +10,30 @@ concurrency:
 
 jobs:
   build-macos:
-  runs-on: macos-latest
-  steps:
-    - name: Checkout HISE repository
-      uses: actions/checkout@v6
-      with:
-        repository: christophhart/HISE
-        ref: 'develop'
-        clean: true
-        submodules: false
-    - name: Checkout JUCE submodules
-      run: |
-        git submodule update --init --recursive
-        cd JUCE
-        git checkout juce6
-    - name: Build & Run CI script
-      working-directory: ${{ github.workspace }}/tools/auto_build/
-      run: sh ./build_ci.sh
-    - name: Build Dyes Tonguewuhh
-      run: sh ./build.sh
-    - name: Upload Dyes Tonguewuhh
-      uses: actions/upload-artifact@v6
-      with:
-        name: dyes-tonguewuhh-macos
-        path: |
-          *.hr1
-          Binaries/Builds/MacOSX/build/Release/*.vst
-          Binaries/Builds/MacOSX/build/Release/*.vst3
+    runs-on: macos-latest
+    steps:
+      - name: Checkout HISE repository
+        uses: actions/checkout@v6
+        with:
+          repository: christophhart/HISE
+          ref: 'develop'
+          clean: true
+          submodules: false
+      - name: Checkout JUCE submodules
+        run: |
+          git submodule update --init --recursive
+          cd JUCE
+          git checkout juce6
+      - name: Build & Run CI script
+        working-directory: ${{ github.workspace }}/tools/auto_build/
+        run: sh ./build_ci.sh
+      - name: Build Dyes Tonguewuhh
+        run: sh ./build.sh
+      - name: Upload Dyes Tonguewuhh
+        uses: actions/upload-artifact@v6
+        with:
+          name: dyes-tonguewuhh-macos
+          path: |
+            *.hr1
+            Binaries/Builds/MacOSX/build/Release/*.vst
+            Binaries/Builds/MacOSX/build/Release/*.vst3
