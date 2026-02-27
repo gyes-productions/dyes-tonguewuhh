@@ -19,12 +19,12 @@
   <ExtraDefinitionsNetworkDll value=""/>
   <AppGroupID value=""/>
   <AAXCategoryFX value="AAX_ePlugInCategory_Instrument"/>
-  <VST3Category value="Instrument"/>
+  <VST3Category value="Synth"/>
   <SupportMonoFX value="No"/>
   <EnableMidiInputFX value="No"/>
   <EnableMidiOut value="No"/>
   <EnableSoundGeneratorsFX value="No"/>
-  <VST3Support value="0"/>
+  <VST3Support value="1"/>
   <UseRawFrontend value="No"/>
   <ExpansionType value="Disabled"/>
   <EncryptionKey value=""/>
@@ -42,4 +42,5 @@
   <CompileWithDebugSymbols value="No"/>
   <IncludeLorisInFrontend value="No"/>
   <RedirectSampleFolder value=""/>
+  <ProjectType value="Instrument"/>
 </ProjectSettings>
