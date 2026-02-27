@@ -1,5 +1,5 @@
 ---
-name: Placeholder Workflow
+name: Build VST
 
 on:
   workflow_dispatch:
@@ -9,13 +9,31 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  hello-world:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Say Hello
-        run: echo "Hello, World!"
-
-# TODO - Update this workflow to include Windows build using the local scripts.  
-# Relocate scripts into a scripts folder.
-# Update workflow to build on Mac OSX runner, doublecheck versions
-# HISE building takes a long time - consider caching the HISE build or using a prebuilt version
+  build-macos:
+  runs-on: macos-latest
+  steps:
+    - name: Checkout HISE repository
+      uses: actions/checkout@v6
+      with:
+        repository: christophhart/HISE
+        ref: 'develop'
+        clean: true
+        submodules: false
+    - name: Checkout JUCE submodules
+      run: |
+        git submodule update --init --recursive
+        cd JUCE
+        git checkout juce6
+    - name: Build & Run CI script
+      working-directory: ${{ github.workspace }}/tools/auto_build/
+      run: sh ./build_ci.sh
+    - name: Build Dyes Tonguewuhh
+      run: sh ./build.sh
+    - name: Upload Dyes Tonguewuhh
+      uses: actions/upload-artifact@v6
+      with:
+        name: dyes-tonguewuhh-macos
+        path: |
+          *.hr1
+          Binaries/Builds/MacOSX/build/Release/*.vst
+          Binaries/Builds/MacOSX/build/Release/*.vst3

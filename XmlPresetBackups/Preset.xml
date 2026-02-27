@@ -116,7 +116,7 @@
                    OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                    NumChannels="1" UseStaticMatrix="0.0" Group0Table="" Group1Table=""
                    Group2Table="" Group3Table="" Group4Table="" Group5Table="" Group6Table=""
-                   Group7Table="">
+                   Group7Table="" SampleMapID="SimpleMap">
           <ChildProcessors>
             <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
               <ChildProcessors/>
@@ -168,13 +168,6 @@
           <channels>
             <channelData enabled="1" level="0.0" suffix=""/>
           </channels>
-          <samplemap CrossfadeGamma="1.0" ID="SimpleMap" RRGroupAmount="1.0" MicPositions=";"
-                     SaveMode="2">
-            <sample Root="65" LoKey="21" HiKey="96" LoVel="0" HiVel="127" RRGroup="1"
-                    FileName="C:\Audio Developer\HISE Projects\dyes-tonguewuhh\Samples\Tonguewuhh.wav"
-                    Duplicate="0" SampleEnd="322083" MonolithOffset="0" MonolithLength="323584"
-                    SampleRate="44100.0" Volume="-3"/>
-          </samplemap>
         </Processor>
       </ChildProcessors>
       <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
