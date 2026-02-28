@@ -21,17 +21,32 @@ jobs:
           clean: true
           submodules: false
           path: HISE
+
       - name: Checkout JUCE submodules
         run: |
           cd HISE
           git submodule update --init --recursive
           cd JUCE
           git checkout juce6
-      - name: Build & Run CI script
+
+      - name: Build HISE
         working-directory: ${{ github.workspace }}/HISE/tools/auto_build/
         run: sh ./build_ci.sh --skip-tests-and-export
-      - name: Build Dyes Tonguewuhh
-        run: sh ./build.sh
+
+
+      - name: Checkout Current Repository
+        uses: actions/checkout@v6
+        with:
+          path: app
+
+      - name: Build Plugin
+        working-directory: ${{ github.workspace }}/app/
+        run: |
+          pwd
+          ls -la
+          echo "Building Current Project"
+          sh ./build.sh
+
       - name: Upload Dyes Tonguewuhh
         uses: actions/upload-artifact@v6
         with:
