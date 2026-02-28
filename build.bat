@@ -35,8 +35,46 @@ set buildAAX=0
 REM set this to the plugin architecture
 set buildArch=-a:x64
 
-REM set this to the HISE binary. This must be the build from within the HISE source code folder!
-set hise_path="C:\HISE\projects\standalone\Builds\VisualStudio2022\x64\Release\App\HISE.exe"
+REM set this to the release configuration type (Release, CI, or "Minimal Build")
+set RELEASE_MODE=Release
+
+REM Dynamically find the HISE binary based on RELEASE_MODE
+setlocal enabledelayedexpansion
+set "script_dir=%~dp0"
+set "hise_base=!script_dir!HISE\projects\standalone\Builds\VisualStudio2022\x64"
+set hise_path=
+
+if "!RELEASE_MODE!"=="Release" (
+  if exist "!hise_base!\Release\App\HISE.exe" set "hise_path=!hise_base!\Release\App\HISE.exe"
+)
+if "!RELEASE_MODE!"=="CI" (
+  if exist "!hise_base!\CI\App\HISE.exe" set "hise_path=!hise_base!\CI\App\HISE.exe"
+)
+if "!RELEASE_MODE!"=="Minimal Build" (
+  if exist "!hise_base!\Minimal Build\App\HISE.exe" set "hise_path=!hise_base!\Minimal Build\App\HISE.exe"
+)
+
+REM If not found with RELEASE_MODE, search for any available build
+if not defined hise_path (
+  if exist "!hise_base!\Release\App\HISE.exe" set "hise_path=!hise_base!\Release\App\HISE.exe"
+)
+if not defined hise_path (
+  if exist "!hise_base!\CI\App\HISE.exe" set "hise_path=!hise_base!\CI\App\HISE.exe"
+)
+if not defined hise_path (
+  if exist "!hise_base!\Minimal Build\App\HISE.exe" set "hise_path=!hise_base!\Minimal Build\App\HISE.exe"
+)
+
+if not defined hise_path (
+  echo ERROR: HISE binary not found in any of the expected locations:
+  echo   - !hise_base!\Release\App\HISE.exe
+  echo   - !hise_base!\CI\App\HISE.exe
+  echo   - !hise_base!\Minimal Build\App\HISE.exe
+  echo Please build HISE first in the same directory as this script.
+  exit /b 1
+)
+
+echo Found HISE binary at: !hise_path!
 
 REM set this to the plugin type (-t:instrument or -t:effect)
 set project_type=-t:instrument
@@ -88,31 +126,28 @@ if not defined installer_command (
 echo Building Binaries...
 REM  ====================================================================================
 
-
-
 echo Setting project folder
-%hise_path% set_project_folder "-p:%~dp0"
+!hise_path! set_project_folder "-p:%~dp0"
 
-%hise_path% clean --all
+!hise_path! clean --all
 
 if %buildAAX%==1 (
   echo Exporting %plugin_name% AAX Plugins
-  %hise_path% clean 
-  %hise_path% export_ci %plugin_project_path% -ipp %project_type% -p:AAX %buildArch%
+  !hise_path! clean 
+  !hise_path! export_ci %plugin_project_path% -ipp %project_type% -p:AAX %buildArch%
   call Binaries/batchCompile.bat
 )
 
 if %buildStandalone%==1 (
   echo Exporting %plugin_name% Standalone
-  %hise_path% clean 
-  %hise_path% export_ci %plugin_project_path% -ipp -t:standalone %buildArch%
+  !hise_path! clean 
+  !hise_path! export_ci %plugin_project_path% -ipp -t:standalone %buildArch%
   call Binaries/batchCompile.bat
 )
 
-
 echo Exporting %plugin_name% VST Plugin
-%hise_path% clean
-%hise_path% export_ci %plugin_project_path% -ipp %project_type% %plugin_format% %buildArch%
+!hise_path! clean
+!hise_path! export_ci %plugin_project_path% -ipp %project_type% %plugin_format% %buildArch%
 call Binaries/batchCompile.bat
 
 :CopyFiles
