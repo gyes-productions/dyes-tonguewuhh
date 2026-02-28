@@ -113,12 +113,9 @@ jobs:
           cd JUCE
           git checkout ${{ env.JUCE_BRANCH }}
 
-      # Doesnt support Windows
-      # - name: Setup Intel oneAPI
-      #   uses: rscohn2/setup-oneapi@v0
-      #   with:
-      #     components: |
-      #       ipp
+      - name: Install Intel IPP via Chocolatey
+        run: choco install intel-oneapi-ipp -y
+        shell: pwsh
 
       - name: Setup MSBuild and VS Dev Environment
         uses: microsoft/setup-msbuild@v2
