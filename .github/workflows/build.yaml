@@ -1,6 +1,7 @@
 ---
 name: Build VST
 
+# TODO - extract this workflow into something reusable.  Use it in Fluffy Drums as well
 on:
   workflow_dispatch:
 
