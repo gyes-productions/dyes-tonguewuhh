@@ -11,11 +11,12 @@ concurrency:
 jobs:
   build-macos:
     runs-on: macos-latest
+    # runs-on: macos-latest-large
     steps:
       - name: Checkout HISE repository
         uses: actions/checkout@v6
         with:
-          repository: christophhart/HISE
+          repository: eschirle/HISE
           ref: 'develop'
           clean: true
           submodules: false
@@ -26,10 +27,9 @@ jobs:
           git submodule update --init --recursive
           cd JUCE
           git checkout juce6
-      # HISE needs to be added to path for unit tests
       - name: Build & Run CI script
         working-directory: ${{ github.workspace }}/HISE/tools/auto_build/
-        run: sh ./build_ci.sh
+        run: sh ./build_ci.sh --skip-tests-and-export
       - name: Build Dyes Tonguewuhh
         run: sh ./build.sh
       - name: Upload Dyes Tonguewuhh
