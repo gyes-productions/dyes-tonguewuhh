@@ -22,11 +22,36 @@ plugin_type=instrument
 
 # create path variables
 project_folder="$PWD"
-hise_binary="$hisepath/projects/standalone/Builds/MacOSX/build/Release/HISE.app/Contents/MacOS/HISE"
+# hise_binary="$hisepath/projects/standalone/Builds/MacOSX/build/Release/HISE.app/Contents/MacOS/HISE"
 mp_binary="$hisepath/tools/multipagecreator/Builds/MacOSX/build/Release/multipagecreator.app/Contents/MacOS/multipagecreator"
 au_project=$project_folder/Binaries/Builds/MacOSX/build/Release/$project_name.component
 vst3_project=$project_folder/Binaries/Builds/MacOSX/build/Release/$project_name.vst3
 installer_binary="$project_folder/Installer/$project_name Installer.app"
+
+# Check if the HISE binary exists in Release, CI, or Minimal Build folders
+hise_found=false
+possible_folders=("Release" "CI" "Minimal Build")
+
+for folder in "${possible_folders[@]}"; do
+	candidate_binary="$hisepath/projects/standalone/Builds/MacOSX/build/$folder/HISE.app/Contents/MacOS/HISE"
+	if [ -f "$candidate_binary" ]; then
+		hise_binary="$candidate_binary"
+		echo "Found HISE binary at $hise_binary"
+		hise_found=true
+		break
+	fi
+done
+
+if [ "$hise_found" = false ]; then
+	echo "HISE binary not found in any of the expected locations:"
+	for folder in "${possible_folders[@]}"; do
+		echo "  - $hisepath/projects/standalone/Builds/MacOSX/build/$folder/HISE.app/Contents/MacOS/HISE"
+	done
+	echo "Please build HISE first."
+	exit 1
+fi
+
+
 
 # CODESIGNING PREPARATION
 # Fetch the codesigning IDs from the local keychain
