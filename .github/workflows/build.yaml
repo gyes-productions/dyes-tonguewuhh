@@ -35,7 +35,7 @@ jobs:
           # Unzip SDK
           unzip -o ${{ github.workspace }}/HISE/tools/SDK/sdk.zip -d ${{ github.workspace }}/HISE/tools/SDK/
           
-          sh ./build_ci.sh --skip-tests-and-export
+          sh ./build_ci.sh Release --skip-tests-and-export
           
           # cd ${{ github.workspace }}/HISE/projects/standalone/Builds/MacOSX
           # xcodebuild -project "HISE Standalone.xcodeproj" -configuration Release -jobs 4 | xcpretty
@@ -75,11 +75,23 @@ jobs:
             ls -la
             cd ..
           fi
+      
+      - name: Zip contents of HISE folder and upload as artifact
+        run: |
+          zip -r hise-build.zip HISE
+          ls -la hise-build.zip
+
+      - name: Upload HISE Build
+        uses: actions/upload-artifact@v6
+        with:
+          name: hise-build-macos
+          path: hise-build.zip
 
       - name: Build Plugin
         run: |
           pwd
           ls -la
+          cd HISE
           echo "Building Current Project"
           sh ./build.sh
 
