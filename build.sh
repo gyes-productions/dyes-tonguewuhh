@@ -79,13 +79,12 @@ ls -la
 echo "Checking for Binaries output"
 
 cd Binaries/Builds/MacOSX
-
 ls -la
 
-"$mp_binary" --export:"$project_folder/Installer/installer.json" --hisepath:"$hisepath" --teamid:$team_id
-
-chmod +x "$project_folder/Installer/Binaries/batchCompileOSX"
-"$project_folder/Installer/Binaries/batchCompileOSX"
+# Code for exporting / building an installer
+# "$mp_binary" --export:"$project_folder/Installer/installer.json" --hisepath:"$hisepath" --teamid:$team_id
+# chmod +x "$project_folder/Installer/Binaries/batchCompileOSX"
+# "$project_folder/Installer/Binaries/batchCompileOSX"
 
 # STAGE 4: Codesigning =============================================================================
 
