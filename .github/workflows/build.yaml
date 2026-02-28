@@ -10,8 +10,8 @@ concurrency:
 
 jobs:
   build-macos:
-    runs-on: macos-latest
-    # runs-on: macos-latest-large
+    # runs-on: macos-latest
+    runs-on: macos-latest-large
     env:
       RELEASE_MODE: "Release"
     steps:
@@ -37,7 +37,7 @@ jobs:
           # Unzip SDK
           unzip -o ${{ github.workspace }}/HISE/tools/SDK/sdk.zip -d ${{ github.workspace }}/HISE/tools/SDK/
           
-          sh ./build_ci.sh "Minimal Build" --skip-tests-and-export
+          sh ./build_ci.sh "${{ env.RELEASE_MODE }}" --skip-tests-and-export
           
           # cd ${{ github.workspace }}/HISE/projects/standalone/Builds/MacOSX
           # xcodebuild -project "HISE Standalone.xcodeproj" -configuration Release -jobs 4 | xcpretty
