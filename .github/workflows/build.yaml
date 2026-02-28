@@ -113,9 +113,8 @@ jobs:
           cd JUCE
           git checkout ${{ env.JUCE_BRANCH }}
 
-      - name: Install Intel IPP via Chocolatey
-        run: choco install intel-oneapi-ipp -y
-        shell: pwsh
+      - name: Install Intel IPP via pip
+        run: pip3 install ipp-static
 
       - name: Setup MSBuild and VS Dev Environment
         uses: microsoft/setup-msbuild@v2
