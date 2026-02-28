@@ -32,12 +32,14 @@ jobs:
       - name: Build HISE
         working-directory: ${{ github.workspace }}/HISE/tools/auto_build/
         run: |
-          sh ./build_ci.sh --skip-tests-and-export
-          
           # Unzip SDK
           unzip -o ${{ github.workspace }}/HISE/tools/SDK/sdk.zip -d ${{ github.workspace }}/HISE/tools/SDK/
-          cd ${{ github.workspace }}/HISE/projects/standalone/Builds/MacOSX
-          xcodebuild -project "HISE Standalone.xcodeproj" -configuration Release -jobs 4 | xcpretty
+          
+          sh ./build_ci.sh --skip-tests-and-export
+          
+          # cd ${{ github.workspace }}/HISE/projects/standalone/Builds/MacOSX
+          # xcodebuild -project "HISE Standalone.xcodeproj" -configuration Release -jobs 4 | xcpretty
+          # set -o pipefail && xcodebuild -project "HISE Standalone.xcodeproj" -configuration "CI" | ./tools/Projucer/xcbeautify --renderer github-actions
 
       - name: Checkout Current Repository
         uses: actions/checkout@v6
@@ -87,5 +89,4 @@ jobs:
           name: dyes-tonguewuhh-macos
           path: |
             *.hr1
-            Binaries/Builds/MacOSX/build/Release/*.vst
             Binaries/Builds/MacOSX/build/Release/*.vst3

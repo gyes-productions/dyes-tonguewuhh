@@ -72,6 +72,16 @@ fi
 
 echo "OK"
 
+# Find the Installer json files - they are not where expected
+
+ls -la
+
+echo "Checking for Binaries output"
+
+cd Binaries/Builds/MacOSX
+
+ls -la
+
 "$mp_binary" --export:"$project_folder/Installer/installer.json" --hisepath:"$hisepath" --teamid:$team_id
 
 chmod +x "$project_folder/Installer/Binaries/batchCompileOSX"
