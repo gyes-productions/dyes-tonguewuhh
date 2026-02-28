@@ -116,7 +116,7 @@ jobs:
       - name: Setup MSBuild and VS Dev Environment
         uses: microsoft/setup-msbuild@v2
         with:
-          vs-prerelease: true # This enables the preview toolsets like v145
+          #vs-prerelease: true # This did not include v145
           msbuild-architecture: x64
           
       - name: Build HISE CI
