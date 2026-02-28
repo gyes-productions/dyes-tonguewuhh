@@ -116,7 +116,8 @@ jobs:
         working-directory: ${{ github.workspace }}/HISE/tools/auto_build/
         shell: cmd
         run: |
-          unzip -o ${{ github.workspace }}/HISE/tools/SDK/sdk.zip -d ${{ github.workspace }}/HISE/tools/SDK/
+          chdir
+          dir
           build_ci.bat "${{ env.RELEASE_MODE }}" --skip-tests-and-export
 
       - name: Checkout Current Repository
