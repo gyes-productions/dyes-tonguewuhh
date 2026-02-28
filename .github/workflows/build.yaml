@@ -10,10 +10,10 @@ concurrency:
 
 jobs:
   build-macos:
-    # runs-on: macos-latest
-    runs-on: macos-latest-large
+    runs-on: macos-latest
+    # runs-on: macos-latest-large
     env:
-      RELEASE_MODE: "Release"
+      RELEASE_MODE: "CI"
     steps:
       - name: Checkout HISE repository
         uses: actions/checkout@v6
@@ -31,6 +31,7 @@ jobs:
           cd JUCE
           git checkout juce6
 
+      # TODO: Investigate caching so we don't have to build HISE binary every time
       - name: Build HISE
         working-directory: ${{ github.workspace }}/HISE/tools/auto_build/
         run: |
@@ -53,48 +54,14 @@ jobs:
         run: |
           cp -R ${{ github.workspace }}/app/* ${{ github.workspace }}/
 
-      - name: Ensure HISE VST SDK is available
-        run: |
-          if [ ! -d "HISE/tools/SDK/VST3 SDK" ]; then
-            echo "Error: HISE/tools/SDK/VST3 SDK folder not found"
-            exit 1
-          fi
-          if [ ! -d "HISE/JUCE/projucer" ]; then
-            echo "Error: HISE/JUCE/projucer folder not found"
-            # exit 1
-          fi
-          if [ ! -d "HISE/tools/Projucer/Projucer.app/Contents/MacOS" ]; then
-            echo "Error: Projucer.app folder not found"
-            # exit 1
-          fi
-          if [ ! -d "HISE/projects/standalone/Builds/MacOSX/build/Release/Hise.app" ]; then
-            echo "Error: HISE standalone project not found"
-            # exit 1
-          fi
-          # If Binaries/ folder exists, cd into it
-          if [ -d "Binaries" ]; then
-            cd Binaries
-            ls -la
-            cd ..
-          fi
-      
-      - name: Zip contents of HISE folder and upload as artifact
-        run: |
-          zip -r hise-build.zip HISE
-          ls -la hise-build.zip
-
-      - name: Upload HISE Build
-        uses: actions/upload-artifact@v6
-        with:
-          name: hise-build-macos
-          path: hise-build.zip
-
       - name: Build Plugin
         run: |
-          pwd
-          ls -la
-          echo "Building Current Project"
           sh ./build.sh
+
+      # TODO: Create a release on the repo and upload files there
+      - name: Copy VST3 to root
+        run: |
+          cp Binaries/Builds/MacOSX/build/Release/*.vst3 ${{ github.workspace }}/
 
       - name: Upload Dyes Tonguewuhh
         uses: actions/upload-artifact@v6
@@ -102,4 +69,4 @@ jobs:
           name: dyes-tonguewuhh-macos
           path: |
             *.hr1
-            Binaries/Builds/MacOSX/build/Release/*.vst3
+            *.vst3
