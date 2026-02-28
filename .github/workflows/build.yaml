@@ -44,6 +44,12 @@ jobs:
           cd JUCE
           git checkout ${{ env.JUCE_BRANCH }}
 
+      - name: Setup Intel oneAPI
+        uses: rscohn2/setup-oneapi@v0
+        with:
+          components: |
+            ipp
+
       # TODO: Investigate caching so we don't have to build HISE binary every time
       - name: Build HISE
         working-directory: ${{ github.workspace }}/HISE/tools/auto_build/

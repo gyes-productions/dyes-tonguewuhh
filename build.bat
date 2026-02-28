@@ -134,20 +134,20 @@ echo Setting project folder
 if %buildAAX%==1 (
   echo Exporting %plugin_name% AAX Plugins
   !hise_path! clean 
-  !hise_path! export_ci %plugin_project_path% -ipp %project_type% -p:AAX %buildArch%
+  !hise_path! export_ci %plugin_project_path% %project_type% -p:AAX %buildArch%
   call Binaries/batchCompile.bat
 )
 
 if %buildStandalone%==1 (
   echo Exporting %plugin_name% Standalone
   !hise_path! clean 
-  !hise_path! export_ci %plugin_project_path% -ipp -t:standalone %buildArch%
+  !hise_path! export_ci %plugin_project_path% -t:standalone %buildArch%
   call Binaries/batchCompile.bat
 )
 
 echo Exporting %plugin_name% VST Plugin
 !hise_path! clean
-!hise_path! export_ci %plugin_project_path% -ipp %project_type% %plugin_format% %buildArch%
+!hise_path! export_ci %plugin_project_path% %project_type% %plugin_format% %buildArch%
 call Binaries/batchCompile.bat
 
 :CopyFiles
