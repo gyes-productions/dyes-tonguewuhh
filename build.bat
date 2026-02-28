@@ -41,7 +41,7 @@ set RELEASE_MODE=Release
 REM Dynamically find the HISE binary based on RELEASE_MODE
 setlocal enabledelayedexpansion
 set "script_dir=%~dp0"
-set "hise_base=!script_dir!HISE\projects\standalone\Builds\VisualStudio2022\x64"
+set "hise_base=!script_dir!HISE\projects\standalone\Builds\VisualStudio2026\x64"
 set hise_path=
 
 if "!RELEASE_MODE!"=="Release" (
@@ -109,7 +109,7 @@ if %buildAAX%==1 (
 ) 
 
 if not defined hise_path (
-  set hise_path="C:\HISE\projects\standalone\Builds\VisualStudio2022\x64\Release\App\HISE.exe"
+  set hise_path="C:\HISE\projects\standalone\Builds\VisualStudio2026\x64\Release\App\HISE.exe"
 )
 
 REM Don't check the installer if not required...
