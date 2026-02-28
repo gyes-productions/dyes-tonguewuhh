@@ -35,7 +35,7 @@ jobs:
           # Unzip SDK
           unzip -o ${{ github.workspace }}/HISE/tools/SDK/sdk.zip -d ${{ github.workspace }}/HISE/tools/SDK/
           
-          sh ./build_ci.sh Release --skip-tests-and-export
+          sh ./build_ci.sh "Minimal Build" --skip-tests-and-export
           
           # cd ${{ github.workspace }}/HISE/projects/standalone/Builds/MacOSX
           # xcodebuild -project "HISE Standalone.xcodeproj" -configuration Release -jobs 4 | xcpretty
