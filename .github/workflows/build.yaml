@@ -22,6 +22,7 @@ jobs:
           path: HISE
       - name: Checkout JUCE submodules
         run: |
+          cd HISE
           git submodule update --init --recursive
           cd JUCE
           git checkout juce6

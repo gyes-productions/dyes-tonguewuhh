@@ -1,6 +1,7 @@
 # Exclude HISE Binaries
 Binaries
 Presets/Autosave_*.hip
+.DS_Store
 
 Images/.unused
 
