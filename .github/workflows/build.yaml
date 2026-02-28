@@ -112,6 +112,12 @@ jobs:
           git submodule update --init --recursive
           cd JUCE
           git checkout ${{ env.JUCE_BRANCH }}
+
+      - name: Setup MSBuild and VS Dev Environment
+        uses: microsoft/setup-msbuild@v2
+        with:
+          vs-prerelease: true # This enables the preview toolsets like v145
+          msbuild-architecture: x64
           
       - name: Build HISE CI
         working-directory: ${{ github.workspace }}/HISE/tools/auto_build/
