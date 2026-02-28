@@ -108,8 +108,9 @@ jobs:
       - name: Checkout JUCE submodules
         shell: cmd
         run: |
+          cd HISE
           git submodule update --init --recursive
-          cd HISE\JUCE
+          cd JUCE
           git checkout ${{ env.JUCE_BRANCH }}
           
       - name: Build HISE CI
