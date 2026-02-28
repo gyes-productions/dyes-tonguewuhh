@@ -113,11 +113,12 @@ jobs:
           cd JUCE
           git checkout ${{ env.JUCE_BRANCH }}
 
-      - name: Setup Intel oneAPI
-        uses: rscohn2/setup-oneapi@v0
-        with:
-          components: |
-            ipp
+      # Doesnt support Windows
+      # - name: Setup Intel oneAPI
+      #   uses: rscohn2/setup-oneapi@v0
+      #   with:
+      #     components: |
+      #       ipp
 
       - name: Setup MSBuild and VS Dev Environment
         uses: microsoft/setup-msbuild@v2
