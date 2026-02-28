@@ -12,6 +12,8 @@ jobs:
   build-macos:
     runs-on: macos-latest
     # runs-on: macos-latest-large
+    env:
+      RELEASE_MODE: "Release"
     steps:
       - name: Checkout HISE repository
         uses: actions/checkout@v6
@@ -39,7 +41,7 @@ jobs:
           
           # cd ${{ github.workspace }}/HISE/projects/standalone/Builds/MacOSX
           # xcodebuild -project "HISE Standalone.xcodeproj" -configuration Release -jobs 4 | xcpretty
-          # set -o pipefail && xcodebuild -project "HISE Standalone.xcodeproj" -configuration "CI" | ./tools/Projucer/xcbeautify --renderer github-actions
+          # set -o pipefail && xcodebuild -project "HISE Standalone.xcodeproj" -configuration "${{ env.RELEASE_MODE }}" | ./tools/Projucer/xcbeautify --renderer github-actions
 
       - name: Checkout Current Repository
         uses: actions/checkout@v6
@@ -91,7 +93,6 @@ jobs:
         run: |
           pwd
           ls -la
-          cd HISE
           echo "Building Current Project"
           sh ./build.sh
 
