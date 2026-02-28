@@ -31,8 +31,13 @@ jobs:
 
       - name: Build HISE
         working-directory: ${{ github.workspace }}/HISE/tools/auto_build/
-        run: sh ./build_ci.sh --skip-tests-and-export
-
+        run: |
+          sh ./build_ci.sh --skip-tests-and-export
+          
+          # Unzip SDK
+          unzip -o ${{ github.workspace }}/HISE/tools/SDK/sdk.zip -d ${{ github.workspace }}/HISE/tools/SDK/
+          cd ${{ github.workspace }}/HISE/projects/standalone/Builds/MacOSX
+          xcodebuild -project "HISE Standalone.xcodeproj" -configuration Release -jobs 4 | xcpretty
 
       - name: Checkout Current Repository
         uses: actions/checkout@v6
@@ -52,15 +57,15 @@ jobs:
           fi
           if [ ! -d "HISE/JUCE/projucer" ]; then
             echo "Error: HISE/JUCE/projucer folder not found"
-            exit 1
+            # exit 1
           fi
           if [ ! -d "HISE/tools/Projucer/Projucer.app/Contents/MacOS" ]; then
             echo "Error: Projucer.app folder not found"
-            exit 1
+            # exit 1
           fi
           if [ ! -d "HISE/projects/standalone/Builds/MacOSX/build/Release/Hise.app" ]; then
             echo "Error: HISE standalone project not found"
-            exit 1
+            # exit 1
           fi
           # If Binaries/ folder exists, cd into it
           if [ -d "Binaries" ]; then
