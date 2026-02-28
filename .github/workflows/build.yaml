@@ -38,9 +38,38 @@ jobs:
         uses: actions/checkout@v6
         with:
           path: app
+      
+      # Copy everything from app folder to root
+      - name: Copy app folder to root
+        run: |
+          cp -R ${{ github.workspace }}/app/* ${{ github.workspace }}/
+
+      - name: Ensure HISE VST SDK is available
+        run: |
+          if [ ! -d "HISE/tools/SDK/VST3 SDK" ]; then
+            echo "Error: HISE/tools/SDK/VST3 SDK folder not found"
+            exit 1
+          fi
+          if [ ! -d "HISE/JUCE/projucer" ]; then
+            echo "Error: HISE/JUCE/projucer folder not found"
+            exit 1
+          fi
+          if [ ! -d "HISE/tools/Projucer/Projucer.app/Contents/MacOS" ]; then
+            echo "Error: Projucer.app folder not found"
+            exit 1
+          fi
+          if [ ! -d "HISE/projects/standalone/Builds/MacOSX/build/Release/Hise.app" ]; then
+            echo "Error: HISE standalone project not found"
+            exit 1
+          fi
+          # If Binaries/ folder exists, cd into it
+          if [ -d "Binaries" ]; then
+            cd Binaries
+            ls -la
+            cd ..
+          fi
 
       - name: Build Plugin
-        working-directory: ${{ github.workspace }}/app/
         run: |
           pwd
           ls -la
