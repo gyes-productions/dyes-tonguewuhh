@@ -25,6 +25,7 @@ jobs:
       platform: ${{ inputs.platform }}
       project-name: 'Dyes-Tonguewuhh'
     secrets:
+      #TODO - move repo into a single org to use org secrets
       PROD_MACOS_CERTIFICATE: ${{ secrets.PROD_MACOS_CERTIFICATE }}
       PROD_MACOS_CERTIFICATE_PWD: ${{ secrets.PROD_MACOS_CERTIFICATE_PWD }}
       PROD_MACOS_CERTIFICATE_NAME: ${{ secrets.PROD_MACOS_CERTIFICATE_NAME }}
