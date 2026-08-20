@@ -15,21 +15,14 @@ on:
           - windows
 
 concurrency:
-  group: build
+  group: build-${{ inputs.platform }}
   cancel-in-progress: true
 
 jobs:
   build:
-    uses: eschirle/HISE/.github/workflows/plugin_build.yaml@develop
+    uses: eschirle/hise-plugin-workflows/.github/workflows/plugin_build.yaml@main
     with:
       platform: ${{ inputs.platform }}
-      project-name: 'Dyes-Tonguewuhh'
-    secrets:
-      #TODO - move repo into a single org to use org secrets
-      PROD_MACOS_CERTIFICATE: ${{ secrets.PROD_MACOS_CERTIFICATE }}
-      PROD_MACOS_CERTIFICATE_PWD: ${{ secrets.PROD_MACOS_CERTIFICATE_PWD }}
-      PROD_MACOS_CERTIFICATE_NAME: ${{ secrets.PROD_MACOS_CERTIFICATE_NAME }}
-      PROD_MACOS_CI_KEYCHAIN_PWD: ${{ secrets.PROD_MACOS_CI_KEYCHAIN_PWD }}
-      PROD_MACOS_NOTARIZATION_APPLE_ID: ${{ secrets.PROD_MACOS_NOTARIZATION_APPLE_ID }}
-      PROD_MACOS_NOTARIZATION_TEAM_ID: ${{ secrets.PROD_MACOS_NOTARIZATION_TEAM_ID }}
-      PROD_MACOS_NOTARIZATION_PWD: ${{ secrets.PROD_MACOS_NOTARIZATION_PWD }}
+      project-name: 'Dyes Tonguewuhh'
+      use-ipp: false
+    secrets: inherit

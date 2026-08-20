@@ -5,7 +5,7 @@
   <Version value="1.0.0"/>
   <Description value="Steel Tongue Rhodes Keyboard"/>
   <BundleIdentifier value="com.GyesProductions.product"/>
-  <PluginCode value="Abcd"/>
+  <PluginCode value="Dyes"/>
   <EmbedAudioFiles value="Yes"/>
   <EmbedImageFiles value="Yes"/>
   <SupportFullDynamicsHLAC value="No"/>
